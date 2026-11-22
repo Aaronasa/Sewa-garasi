@@ -17,14 +17,6 @@ enum TipeGarasi: string
     public const NOMOR_MAKSIMAL = 999;
 
     /**
-     * Cek apakah ini garasi mobil listrik (punya harga isi listrik per kWh).
-     */
-    public function isListrik(): bool
-    {
-        return $this === self::MobilListrik;
-    }
-
-    /**
      * Huruf depan kode garasi sesuai tipenya.
      *
      * @return string S untuk sepeda, C untuk mobil, E untuk mobil listrik

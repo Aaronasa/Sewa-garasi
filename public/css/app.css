@@ -1,0 +1,600 @@
+/*
+ * Tampilan aplikasi Sewa Garasi: CSS biasa tanpa framework dan tanpa JavaScript.
+ * Gaya minimalis: latar terang, garis tipis, satu warna utama (biru),
+ * tanpa bayangan dan tanpa gradasi.
+ */
+
+/* ===== Warna ===== */
+:root {
+    --biru: #2563eb;
+    --biru-tua: #1d4ed8;
+    --biru-muda: #eff6ff;
+    --hijau: #15803d;
+    --hijau-muda: #f0fdf4;
+    --oranye: #c2410c;
+    --oranye-muda: #fff7ed;
+    --merah: #dc2626;
+    --teks: #1e293b;
+    --teks-redup: #475569;
+    --garis: #e2e8f0;
+    --latar: #f8fafc;
+    --sudut: 6px;
+}
+
+/* ===== Dasar ===== */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--teks);
+    background: var(--latar);
+}
+
+h1 {
+    margin: 0 0 4px;
+    font-size: 1.5rem;
+    line-height: 1.3;
+}
+
+h2 {
+    margin: 32px 0 12px;
+    font-size: 1.125rem;
+}
+
+a {
+    color: var(--biru);
+}
+
+a:hover {
+    color: var(--biru-tua);
+}
+
+:focus-visible {
+    outline: 2px solid var(--biru);
+    outline-offset: 2px;
+}
+
+/* Kotak putih bergaris tipis yang dipakai bersama */
+.kartu,
+.form,
+.tabel-wadah,
+.kartu-menu,
+.kartu-tamu {
+    background: #ffffff;
+    border: 1px solid var(--garis);
+    border-radius: var(--sudut);
+}
+
+/* ===== Navbar ===== */
+.navbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 24px;
+    background: #ffffff;
+    border-bottom: 1px solid var(--garis);
+}
+
+.logo {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--teks);
+    text-decoration: none;
+}
+
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 20px;
+}
+
+.menu a {
+    padding: 4px 0;
+    color: var(--teks-redup);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+}
+
+.menu a:hover {
+    color: var(--teks);
+}
+
+.menu a.aktif {
+    font-weight: 600;
+    color: var(--biru);
+    border-bottom-color: var(--biru);
+}
+
+.pengguna {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-left: 20px;
+    font-size: 0.9375rem;
+    border-left: 1px solid var(--garis);
+}
+
+.pengguna small {
+    color: var(--teks-redup);
+}
+
+/* ===== Isi halaman ===== */
+.kontainer {
+    flex: 1;
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 32px 20px 48px;
+}
+
+.kepala-halaman {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.kepala-halaman p,
+.sub {
+    margin: 0;
+    color: var(--teks-redup);
+}
+
+.kartu {
+    margin-bottom: 24px;
+    padding: 20px 24px;
+}
+
+.kartu h2 {
+    margin-top: 0;
+}
+
+.kaki {
+    padding: 20px;
+    font-size: 0.875rem;
+    text-align: center;
+    color: var(--teks-redup);
+    border-top: 1px solid var(--garis);
+}
+
+/* ===== Tombol ===== */
+button,
+.tombol {
+    display: inline-block;
+    padding: 10px 18px;
+    font: inherit;
+    font-weight: 600;
+    line-height: 1.25;
+    color: #ffffff;
+    text-decoration: none;
+    background: var(--biru);
+    border: 1px solid var(--biru);
+    border-radius: var(--sudut);
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+button:hover,
+.tombol:hover {
+    color: #ffffff;
+    background: var(--biru-tua);
+    border-color: var(--biru-tua);
+}
+
+.tombol-kecil {
+    padding: 6px 12px;
+    font-size: 0.875rem;
+}
+
+.tombol-garis {
+    color: var(--teks);
+    background: #ffffff;
+    border-color: #cbd5e1;
+}
+
+.tombol-garis:hover {
+    color: var(--teks);
+    background: var(--latar);
+    border-color: #94a3b8;
+}
+
+.tombol-bahaya {
+    color: var(--merah);
+    background: #ffffff;
+    border-color: var(--merah);
+}
+
+.tombol-bahaya:hover {
+    color: #ffffff;
+    background: var(--merah);
+    border-color: var(--merah);
+}
+
+.tombol-baris,
+.aksi {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* ===== Form ===== */
+.form {
+    display: grid;
+    gap: 16px;
+    max-width: 560px;
+    margin-bottom: 24px;
+    padding: 24px;
+}
+
+.form h2 {
+    margin: 0;
+}
+
+.form-lebar {
+    max-width: none;
+}
+
+.form-baris {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    align-items: end;
+    max-width: none;
+}
+
+.isian {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+label {
+    font-size: 0.9375rem;
+    font-weight: 600;
+}
+
+input,
+select {
+    width: 100%;
+    min-height: 42px;
+    padding: 8px 12px;
+    font: inherit;
+    color: var(--teks);
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: var(--sudut);
+}
+
+input:focus,
+select:focus {
+    border-color: var(--biru);
+}
+
+input:user-invalid,
+select:user-invalid {
+    border-color: var(--merah);
+}
+
+input[type="radio"] {
+    width: 18px;
+    min-height: 0;
+    height: 18px;
+    accent-color: var(--biru);
+}
+
+input[type="file"] {
+    padding: 8px;
+    background: var(--latar);
+}
+
+small {
+    font-size: 0.875rem;
+    color: var(--teks-redup);
+}
+
+.error {
+    color: var(--merah);
+}
+
+fieldset {
+    display: grid;
+    gap: 16px;
+    min-width: 0;
+    margin: 0;
+    padding: 16px 20px 20px;
+    border: 1px solid var(--garis);
+    border-radius: var(--sudut);
+}
+
+legend {
+    padding: 0 6px;
+    font-weight: 700;
+}
+
+/* Dua kotak berdampingan (halaman perpanjangan) */
+.dua-kolom {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+    align-items: start;
+    margin-bottom: 24px;
+}
+
+.dua-kolom > * {
+    max-width: none;
+    margin-bottom: 0;
+}
+
+/* ===== Tabel ===== */
+.tabel-wadah {
+    margin-bottom: 24px;
+    overflow-x: auto;
+}
+
+.form .tabel-wadah {
+    margin-bottom: 0;
+}
+
+.tabel {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabel th,
+.tabel td {
+    padding: 12px 16px;
+    text-align: left;
+    white-space: nowrap;
+    border-bottom: 1px solid var(--garis);
+}
+
+.tabel thead th {
+    font-size: 0.875rem;
+    color: var(--teks-redup);
+    background: var(--latar);
+}
+
+.tabel tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.tabel tbody tr:has(input:checked) {
+    background: var(--biru-muda);
+}
+
+.tabel tfoot th {
+    border-top: 2px solid var(--garis);
+    border-bottom: none;
+}
+
+.tabel .angka {
+    text-align: right;
+}
+
+.kode {
+    font-weight: 700;
+}
+
+.redup {
+    color: var(--teks-redup);
+}
+
+/* Tabel dua kolom (judul dan isi) untuk ringkasan data sewa */
+.ringkasan {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.ringkasan th,
+.ringkasan td {
+    padding: 8px 0;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid var(--garis);
+}
+
+.ringkasan th {
+    width: 42%;
+    font-weight: 400;
+    color: var(--teks-redup);
+}
+
+.ringkasan tr:last-child th,
+.ringkasan tr:last-child td {
+    border-bottom: none;
+}
+
+.ringkasan .total td {
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+/* ===== Badge status ===== */
+.badge {
+    display: inline-block;
+    padding: 2px 10px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    border-radius: 999px;
+}
+
+.badge-hijau {
+    color: var(--hijau);
+    background: var(--hijau-muda);
+}
+
+.badge-oranye {
+    color: var(--oranye);
+    background: var(--oranye-muda);
+}
+
+/* ===== Pesan ===== */
+.pesan {
+    margin: 0 0 24px;
+    padding: 12px 16px;
+    border: 1px solid transparent;
+    border-radius: var(--sudut);
+}
+
+.pesan-sukses {
+    color: var(--hijau);
+    background: var(--hijau-muda);
+    border-color: #bbf7d0;
+}
+
+.info {
+    margin: 0 0 24px;
+    padding: 12px 16px;
+    background: var(--biru-muda);
+    border: 1px solid #bfdbfe;
+    border-radius: var(--sudut);
+}
+
+.kosong {
+    margin: 0 0 24px;
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--teks-redup);
+    background: #ffffff;
+    border: 1px dashed #cbd5e1;
+    border-radius: var(--sudut);
+}
+
+/* ===== Beranda ===== */
+.grid-menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+}
+
+.kartu-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 20px;
+    color: var(--teks);
+    text-decoration: none;
+    transition: border-color 0.2s;
+}
+
+.kartu-menu:hover {
+    color: var(--teks);
+    border-color: var(--biru);
+}
+
+.kartu-menu strong {
+    color: var(--biru);
+}
+
+.kartu-menu span {
+    font-size: 0.9375rem;
+    color: var(--teks-redup);
+}
+
+/* ===== Langkah sewa (1 dan 2) ===== */
+.langkah {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    margin: 0 0 24px;
+    padding: 0;
+    list-style: none;
+    border-bottom: 1px solid var(--garis);
+}
+
+.langkah li {
+    margin-bottom: -1px;
+    padding-bottom: 10px;
+    color: var(--teks-redup);
+    border-bottom: 2px solid transparent;
+}
+
+.langkah li.aktif {
+    font-weight: 600;
+    color: var(--biru);
+    border-bottom-color: var(--biru);
+}
+
+/* ===== Halaman tamu (login dan daftar) ===== */
+.kartu-tamu {
+    width: 100%;
+    max-width: 440px;
+    margin: 24px auto;
+    padding: 32px;
+}
+
+.kartu-tamu-lebar {
+    max-width: 560px;
+}
+
+.kartu-tamu h1,
+.kartu-tamu .sub {
+    text-align: center;
+}
+
+.kartu-tamu .sub {
+    margin-bottom: 24px;
+}
+
+.kartu-tamu .form {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.kartu-tamu button {
+    width: 100%;
+}
+
+.tautan-bawah {
+    margin: 20px 0 0;
+    text-align: center;
+    color: var(--teks-redup);
+}
+
+/* ===== Pengguna yang memilih animasi dikurangi ===== */
+@media (prefers-reduced-motion: reduce) {
+    button,
+    .tombol,
+    .kartu-menu {
+        transition: none;
+    }
+}
+
+/* ===== Layar kecil (HP) ===== */
+@media (max-width: 640px) {
+    .navbar {
+        padding: 12px 16px;
+    }
+
+    .pengguna {
+        padding-left: 0;
+        border-left: none;
+    }
+
+    .kontainer {
+        padding: 24px 16px 40px;
+    }
+
+    .kartu-tamu {
+        padding: 24px 20px;
+    }
+}

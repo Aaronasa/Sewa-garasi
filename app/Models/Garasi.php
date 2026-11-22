@@ -70,14 +70,6 @@ class Garasi extends Model
     }
 
     /**
-     * Cek apakah garasi masih punya sewa yang sedang berjalan atau akan datang.
-     */
-    public function adaSewaBelumSelesai(): bool
-    {
-        return $this->sewa()->whereDate('tanggal_selesai', '>=', Carbon::today())->exists();
-    }
-
-    /**
      * Hanya ambil garasi yang tidak punya sewa bentrok pada rentang tanggal tersebut.
      *
      * @param  Builder<Garasi>  $query

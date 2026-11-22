@@ -12,22 +12,24 @@
 
         @auth
             <nav class="menu">
-                    @can('admin')
-                    <a href="{{ route('admin.verifikasi.index') }}">Verifikasi Pendaftar</a>
-                    <a href="{{ route('admin.garasi.index') }}">Garasi</a>
-                    <a href="{{ route('admin.perpanjangan.index') }}">Perpanjangan</a>
-                    <a href="{{ route('admin.laporan.index') }}">Laporan</a>
+                @can('admin')
+                    <a href="{{ route('admin.verifikasi.index') }}" @class(['aktif' => request()->routeIs('admin.verifikasi.*')])>Verifikasi Pendaftar</a>
+                    <a href="{{ route('admin.garasi.index') }}" @class(['aktif' => request()->routeIs('admin.garasi.*')])>Garasi</a>
+                    <a href="{{ route('admin.perpanjangan.index') }}" @class(['aktif' => request()->routeIs('admin.perpanjangan.*')])>Perpanjangan</a>
+                    <a href="{{ route('admin.laporan.index') }}" @class(['aktif' => request()->routeIs('admin.laporan.*')])>Laporan</a>
                 @endcan
-                    @can('penyewa')
-                    <a href="{{ route('sewa.index') }}">Sewa Saya</a>
-                    <a href="{{ route('sewa.create') }}">Sewa Garasi Baru</a>
+                @can('penyewa')
+                    <a href="{{ route('sewa.index') }}" @class(['aktif' => request()->routeIs('sewa.index')])>Sewa Saya</a>
+                    <a href="{{ route('sewa.create') }}" @class(['aktif' => request()->routeIs('sewa.create', 'sewa.pilih-garasi')])>Sewa Garasi Baru</a>
                 @endcan
-                <span>{{ auth()->user()->nama }} ({{ auth()->user()->peran->value }})</span>
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" class="tombol-kecil">Logout</button>
-                </form>
 
+                <div class="pengguna">
+                    <span>{{ auth()->user()->nama }} <small>({{ auth()->user()->peran->value }})</small></span>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="tombol-garis tombol-kecil">Logout</button>
+                    </form>
+                </div>
             </nav>
         @endauth
     </header>
@@ -39,5 +41,7 @@
 
         @yield('konten')
     </main>
+
+    <footer class="kaki">Sewa Garasi &copy; {{ date('Y') }}</footer>
 </body>
 </html>
