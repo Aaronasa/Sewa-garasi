@@ -90,47 +90,4 @@ class GarasiController extends Controller
 
         return $kodeTerakhir === null ? 0 : (int) substr($kodeTerakhir, 1);
     }
-
-
-    /**
-     * Mengubah harga garasi. Kode dan tipe tidak bisa diubah karena kode mengikuti tipe dan nomor urut.
-     * Harga hanya boleh diubah jika tidak ada sewa yang masih berjalan atau akan datang,
-     * karena perpanjangan sewa menghitung ulang biaya dari harga garasi.
-     *
-     * @param  Request  $request  berisi harga_harian dan harga_listrik_per_kwh
-     */
-    public function update(Request $request, Garasi $garasi): RedirectResponse
-    {
-        if ($garasi->adaSewaBelumSelesai()) {
-            return back()->with('gagal', "Harga garasi {$garasi->kode} tidak bisa diubah karena masih ada sewa yang berjalan atau akan datang.");
-        }
-
-        $isListrik = $garasi->tipe->isListrik();
-        $data = $request->validate([
-            'harga_harian' => ['required', 'integer', 'min:1'],
-            'harga_listrik_per_kwh' => $isListrik ? ['required', 'integer', 'min:1'] : ['nullable'],
-        ]);
-
-        $garasi->update([
-            'harga_harian' => $data['harga_harian'],
-            'harga_listrik_per_kwh' => $isListrik ? $data['harga_listrik_per_kwh'] : null,
-        ]);
-
-        return redirect()->route('admin.garasi.index')->with('sukses', "Harga garasi {$garasi->kode} berhasil diubah.");
-    }
-
-    /**
-     * Menghapus garasi yang belum pernah disewa. Garasi dengan riwayat sewa tidak boleh dihapus
-     * supaya data sewa dan laporan tetap utuh.
-     */
-    public function destroy(Garasi $garasi): RedirectResponse
-    {
-        if ($garasi->sewa()->exists()) {
-            return back()->with('gagal', "Garasi {$garasi->kode} tidak bisa dihapus karena punya riwayat sewa.");
-        }
-
-        $garasi->delete();
-
-        return redirect()->route('admin.garasi.index')->with('sukses', "Garasi {$garasi->kode} berhasil dihapus.");
-    }
 }
