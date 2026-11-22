@@ -91,13 +91,6 @@ class GarasiController extends Controller
         return $kodeTerakhir === null ? 0 : (int) substr($kodeTerakhir, 1);
     }
 
-    /**
-     * Menampilkan form ubah harga garasi.
-     */
-    public function edit(Garasi $garasi): View
-    {
-        return view('admin.garasi.edit', ['garasi' => $garasi]);
-    }
 
     /**
      * Mengubah harga garasi. Kode dan tipe tidak bisa diubah karena kode mengikuti tipe dan nomor urut.
